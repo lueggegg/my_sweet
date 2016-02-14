@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		function check_auth() {
+			ids = new Array("user_output", "author_output");
+			form = document.forms["login_form"];
+			reset_error_info(form, ids);
+			user = form["user"].value;
+			if (user != "ttt") {
+				info = "该名字没有权限";
+				set_error_info(form, ids[0], info);
+				return;				
+			}
+			author = form["author"].value;
+			if (author != "abc") {
+				info = "作者姓名错误";
+				set_error_info(form, ids[1], info);
+				return;					
+			}
+			window.location.href="{{ record_url }}";
+		}
+
+		function reset_error_info(form, ids) {
+			for (i=0; i<ids.length; i++) {
+				set_error_info(form, ids[i], "");
+			}
+		}
+
+		function set_error_info(form, id, value) {
+			form[id].value = value;
+		}
+	</script>
+</head>
+
+<body>
+	<br>
+	<div align="center">
+		<form name="login_form">
+			<table bgcolor="#dddddd">
+				<tr>
+					<td style="color:#00c" align="right">{{ user_name }}: </td>
+					<td>
+						<input type="text" name="user" placeholder="使用小写拼音"/>
+					</td>
+				</tr>
+				<tr height="15">
+					<td></td>
+					<td>&nbsp;&nbsp;<output style="color:#c00; font-size:12px" name="user_output"/></td>
+				</tr>
+				<tr height="5"><td style="font-size:5px">&nbsp;</td></tr>
+				<tr >
+					<td style="color:#00c"  align="right">{{ author_name }}: </td>
+					<td>
+						<input type="text" name="author" placeholder="使用小写拼音"/>	
+					</td>
+				</tr>
+				<tr height="15">
+					<td></td>
+					<td>&nbsp;&nbsp;<output style="color:#c00; font-size:12px" name="author_output"/></td>
+				</tr>
+				<tr height="5"><td style="font-size:5px">&nbsp;</td></tr>
+				<tr height="40">
+					<td colspan="2"  bgcolor="#ffffff" align="center">
+						<input style="width:80px" type="button" width="50" value="确定" onclick="check_auth();" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+
+</html>

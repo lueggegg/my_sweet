@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		a {text-decoration:none;}
+	</style>
+</head>
+
+<body>
+<div style="width:640px">
+	<div style="width:100%">
+		<ul>
+			{% for msg in msgs %}
+				<li style="list-style:none">
+					<div style="color:{{ msg['color'] }}">
+						{{ msg['sender'] }}&nbsp;&nbsp;{{ msg['date'] }}&nbsp;{{ msg['time'] }}
+					</div>
+					<div style="padding-left: 1cm">{{ msg['msg'] }}</div>
+				</li>
+			{% end %}
+		</ul>
+	</div>
+	<div style="width:90%; float:right">
+		<div style="width:50px; float:left">
+			<a href="?page=first" title="第一页">|&lt;</a></div>
+		<div style="width:50px; float:left">
+			<a href="?page=pre&current_page={{ current_page }}" title="前一页">&lt;&lt;</a></div>
+		<div style="width:50px; float:left">
+			<a href="?page=next&current_page={{ current_page }}" title="下一页">&gt;&gt;</a></div>
+		<div style="width:50px; float:left">
+			<a href="?page=last" title="最后一页">&gt;|</a></div>
+		<div style="float:left">
+			<form action="?">
+				共{{ total_pages }}页/
+				第<input name="page" type="number" style="width:50px" value="{{ current_page }}">页
+				&nbsp;&nbsp;
+				<input type="submit" value="go">
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>
